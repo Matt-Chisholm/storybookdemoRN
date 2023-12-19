@@ -1,6 +1,7 @@
-// MainScreen.jsx
 import React, { useState } from 'react';
-import { View, Text, TextInput, Button, FlatList, StyleSheet, TouchableOpacity } from 'react-native';
+import { View, Button, FlatList, StyleSheet } from 'react-native';
+import TaskInput from '../components/TaskInput';
+import TaskItem from '../components/TaskItem';
 
 const MainScreen = () => {
   const [task, setTask] = useState('');
@@ -18,23 +19,14 @@ const MainScreen = () => {
 
   return (
     <View style={styles.container}>
-      <TextInput
-        style={styles.input}
-        placeholder="Add a new task"
-        value={task}
-        onChangeText={setTask}
-      />
+      <TaskInput value={task} onChangeText={setTask} />
       <Button title="Add Task" onPress={handleAddTask} />
 
       <FlatList
         data={tasks}
         keyExtractor={(item) => item.id}
         renderItem={({ item }) => (
-          <TouchableOpacity onPress={() => toggleTaskCompletion(item.id)}>
-            <Text style={{ ...styles.task, textDecorationLine: item.completed ? 'line-through' : 'none' }}>
-              {item.title}
-            </Text>
-          </TouchableOpacity>
+          <TaskItem task={item} toggleTaskCompletion={toggleTaskCompletion} />
         )}
       />
     </View>
@@ -46,21 +38,6 @@ const styles = StyleSheet.create({
     flex: 1,
     paddingTop: 50,
     paddingHorizontal: 20,
-  },
-  input: {
-    borderWidth: 1,
-    borderColor: '#ddd',
-    padding: 10,
-    marginBottom: 10,
-    borderRadius: 5,
-  },
-  task: {
-    padding: 10,
-    marginTop: 10,
-    backgroundColor: '#f9f9f9',
-    borderWidth: 1,
-    borderColor: '#ddd',
-    borderRadius: 5,
   },
 });
 
