@@ -1,31 +1,29 @@
-import React from 'react';
-import { View } from 'react-native';
-import { MyButton } from './Button';
+// Button.stories.js
+import React from "react";
+import { View } from "react-native";
+import Button from "./Button";
 
-const MyButtonMeta = {
-  title: 'MyButton',
-  component: MyButton,
-  argTypes: {
-    onPress: { action: 'pressed the button' },
-  },
-  args: {
-    text: 'Hello world',
-  },
-  decorators: [
-    (Story) => (
-      <View style={{ alignItems: 'center', justifyContent: 'center', flex: 1 }}>
-        <Story />
-      </View>
-    ),
-  ],
+export default {
+	title: "Button",
+	component: Button,
+	decorators: [
+		(Story) => (
+			<View style={{ alignItems: "center", justifyContent: "center", flex: 1 }}>
+				<Story />
+			</View>
+		),
+	],
 };
 
-export default MyButtonMeta;
+export const Basic = (args) => <Button {...args} />;
+Basic.args = {
+	title: "Button",
+	onPress: () => console.log("Button pressed"),
+};
 
-export const Basic = {};
-
-export const AnotherExample = {
-  args: {
-    text: 'Another example',
-  },
+export const CustomColor = (args) => <Button {...args} />;
+CustomColor.args = {
+	title: "Custom Color",
+	onPress: () => console.log("Button pressed"),
+	style: { backgroundColor: "green" },
 };

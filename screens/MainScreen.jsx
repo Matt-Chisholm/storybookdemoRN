@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
-import { View, Button, FlatList, StyleSheet } from 'react-native';
-import TaskInput from '../components/TaskInput';
-import TaskItem from '../components/TaskItem';
+import { View, FlatList, StyleSheet } from 'react-native';
+import TaskInput from '../.storybook/stories/TaskInput/TaskInput';
+import TaskItem from '../.storybook/stories/TaskItem/TaskItem';
+import Button from '../.storybook/stories/Button/Button';
 
 const MainScreen = () => {
   const [task, setTask] = useState('');
@@ -20,7 +21,7 @@ const MainScreen = () => {
   return (
     <View style={styles.container}>
       <TaskInput value={task} onChangeText={setTask} />
-      <Button title="Add Task" onPress={handleAddTask} />
+        <Button title="Add Task" onPress={handleAddTask} />
 
       <FlatList
         data={tasks}
